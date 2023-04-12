@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Authors>Nick Andrews</Authors>
+    <RootNamespace>NickSpace.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+    <Company>NickSpace</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Agi\" />
+    <Folder Include="Ccsds\" />
+    <Folder Include="Nasa\" />
+    <Folder Include="CelesTrak\" />
+    <Folder Include="AISolutions\" />
+    <Folder Include="Udl\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="UnitsNet" Version="5.11.0" />
+  </ItemGroup>
+
+</Project>
