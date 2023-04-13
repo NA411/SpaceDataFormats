@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NickSpace.Ngs
+namespace NickSpace.SpaceDataFormats.Ngs
 {
     public class Sp3
     {

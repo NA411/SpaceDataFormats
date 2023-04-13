@@ -11,6 +11,9 @@ namespace NickSpace.SpaceDataFormats.Ussf
     public class TwoLineElementSet : IParseable<TwoLineElementSet>, ISgp4Elements, IOrbitalInformation, IIsValidatable
     {
         #region Fields
+        private readonly string _line0 = string.Empty;
+        private readonly string _line1 = string.Empty;
+        private readonly string _line2 = string.Empty;
         #endregion
         #region Properties
         public uint SatelliteNumber { get; set; }
@@ -154,6 +157,9 @@ namespace NickSpace.SpaceDataFormats.Ussf
         {
             IsValid = true;
         }
+        #endregion
+        #region Override Methods
+        public override string ToString() => string.Join(Environment.NewLine, _line0, _line1, _line2);
         #endregion
         #region Private Methods
         #endregion
