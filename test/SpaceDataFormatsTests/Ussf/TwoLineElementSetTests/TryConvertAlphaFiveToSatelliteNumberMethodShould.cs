@@ -3,13 +3,13 @@
 namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
 {
     [TestClass]
-    public class TryConvertAlphaFiveToSatelliteNumber
+    public class TryConvertAlphaFiveToSatelliteNumberMethodShould
     {
         [DataTestMethod]
         [DataRow("A1246")]
         [DataRow("T2033")]
         [DataRow("G6463")]
-        public void ShouldReturnTrueWithValidConversion(string satelliteDesignation)
+        public void ReturnTrueWithValidConversion(string satelliteDesignation)
         {
             //-- Assemble
             //-- Act
@@ -21,7 +21,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         [DataRow("A1246",101_246)]
         [DataRow("T2033",272_033)]
         [DataRow("G6463",166_463)]
-        public void ShouldConvertAlphaFiveToExpectedSatelliteNumbers(string input, int expectedResult)
+        public void ConvertAlphaFiveToExpectedSatelliteNumbers(string input, int expectedResult)
         {
             //-- Assemble
             //-- Act
@@ -32,7 +32,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         [DataTestMethod]
         [DataRow("I1246")]
         [DataRow("O2033")]
-        public void ShouldReturnFalseWithInvalidAlphaFiveString(string input)
+        public void ReturnFalseWithInvalidAlphaFiveString(string input)
         {
             //-- Assemble
             //-- Act
@@ -43,7 +43,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         [DataTestMethod]
         [DataRow("I1246")]
         [DataRow("O2033")]
-        public void ShouldConvertInvalidAlphaFiveToDefaultUInt(string input)
+        public void ConvertInvalidAlphaFiveToDefaultUInt(string input)
         {
             //-- Assemble
             //-- Act
@@ -52,7 +52,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             Assert.IsTrue(satelliteNumber == default);
         }
         [TestMethod]
-        public void ShouldReturnFalseWhenAlphaFiveStringDoesNotStartWithAlphaChar()
+        public void ReturnFalseWhenAlphaFiveStringDoesNotStartWithAlphaChar()
         {
             //-- Assemble
             const string input = "34324";
@@ -66,7 +66,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         [DataRow("A123")]
         [DataRow("B12")]
         [DataRow("C1")]
-        public void ShouldReturnFalseWhenStringIsNotFiveDigits(string inputStr)
+        public void ReturnFalseWhenInputStringIsNotFiveDigits(string inputStr)
         {
             //-- Assemble
             //-- Act
@@ -75,7 +75,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             Assert.IsFalse(actualResult);
         }
         [TestMethod]
-        public void ShouldReturnFalseWhenStringIsNull()
+        public void ReturnFalseWhenInputStringIsNull()
         {
             //-- Assemble
             const string? input = null;
@@ -85,7 +85,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             Assert.IsFalse(actualResult);
         }
         [TestMethod]
-        public void ShouldReturnFalseWhenStringIsEmpty()
+        public void ReturnFalseWhenInputStringIsEmpty()
         {
             string input = string.Empty;
             //-- Act
@@ -94,7 +94,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             Assert.IsFalse(actualResult);
         }
         [TestMethod]
-        public void ShouldReturnFalseWhenStringIsWhiteSpace()
+        public void ReturnFalseWhenInputStringIsWhiteSpace()
         {
             const string input = " ";
             //-- Act
@@ -103,7 +103,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             Assert.IsFalse(actualResult);
         }
         [TestMethod]
-        public void ShouldReturnDefaultUIntWhenAlphaFiveStringDoesNotStartWithAlphaChar()
+        public void ReturnDefaultUIntWhenAlphaFiveInputStringDoesNotStartWithAlphaChar()
         {
             //-- Assemble
             const string input = "34324";
@@ -117,7 +117,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         [DataRow("A123")]
         [DataRow("B12")]
         [DataRow("C1")]
-        public void ShouldReturnDefaultUIntWhenStringIsNotFiveDigits(string inputStr)
+        public void ReturnDefaultUIntWhenInputAlphaFiveStringIsNotFiveChars(string inputStr)
         {
             //-- Assemble
             //-- Act
@@ -126,7 +126,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             Assert.IsTrue(actualResult == default);
         }
         [TestMethod]
-        public void ShouldReturnDefaultUIntWhenStringIsNull()
+        public void ReturnDefaultUIntWhenInputStringIsNull()
         {
             //-- Assemble
             const string? input = null;
@@ -136,7 +136,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             Assert.IsTrue(actualResult == default);
         }
         [TestMethod]
-        public void ShouldReturnDefaultUIntWhenStringIsEmpty()
+        public void ReturnDefaultUIntWhenInputStringIsEmpty()
         {
             string input = string.Empty;
             //-- Act
@@ -145,7 +145,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             Assert.IsTrue(actualResult == default);
         }
         [TestMethod]
-        public void ShouldReturnDefaultUIntWhenStringIsWhiteSpace()
+        public void ReturnDefaultUIntWhenInputStringIsWhiteSpace()
         {
             const string input = " ";
             //-- Act

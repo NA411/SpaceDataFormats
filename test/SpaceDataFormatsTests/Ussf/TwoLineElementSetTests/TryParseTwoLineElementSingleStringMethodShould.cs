@@ -1,12 +1,17 @@
 ﻿using NickSpace.SpaceDataFormats.Ussf;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
 {
     [TestClass]
-    public class ParseTwoLineElementString
+    public class TryParseTwoLineElementSingleStringMethodShould
     {
         [TestMethod]
-        public void ShouldNotParseNull()
+        public void NotParseNull()
         {
             //-- Assemble
             const string? input = null;
