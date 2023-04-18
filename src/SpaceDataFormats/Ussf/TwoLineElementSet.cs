@@ -8,7 +8,7 @@ namespace NickSpace.SpaceDataFormats.Ussf
     /// https://celestrak.org/NORAD/documentation/tle-fmt.php
     /// https://www.space-track.org/documentation#tle
     /// </summary>
-    public class TwoLineElementSet : IParseable<TwoLineElementSet>, ISgp4Elements, IOrbitalInformation, IIsValidatable
+    public class TwoLineElementSet : IParseable<TwoLineElementSet>, ISgp4Elements, IOrbitalInformation, IIsValidatable, ILoadable<TwoLineElementSet>, IWriteable
     {
         #region Fields
         private readonly string _line0 = string.Empty;
@@ -64,7 +64,7 @@ namespace NickSpace.SpaceDataFormats.Ussf
         public Length Periapsis { get; set; }
         public TimeSpan Period { get; set; }
         public CentralBody CentralBody { get; set; } = CentralBody.Earth;
-        public bool IsValid {get; private set;}
+        public bool IsValid { get; private set; }
         #endregion
         #region Constructors
         #endregion
@@ -127,7 +127,7 @@ namespace NickSpace.SpaceDataFormats.Ussf
             const int lengthOfAlphaFive = 5;
             if (string.IsNullOrWhiteSpace(satelliteDesignation))
                 return false;
-            if (satelliteDesignation.Length < lengthOfAlphaFive ||  satelliteDesignation.Length > lengthOfAlphaFive)
+            if (satelliteDesignation.Length < lengthOfAlphaFive || satelliteDesignation.Length > lengthOfAlphaFive)
                 return false;
             if (!char.IsLetter(satelliteDesignation[0]))
                 return false;
@@ -148,7 +148,7 @@ namespace NickSpace.SpaceDataFormats.Ussf
             ReadOnlySpan<char> satNumberSpan = Convert.ToString(satelliteNumber);
             if (AlphaFiveLookup.NumToAlphaTable.TryGetValue(Convert.ToUInt16(satelliteNumber / 10_000), out char alphaChar))
             {
-                alphaFiveString = string.Concat(alphaChar,satNumberSpan.Slice(satNumberSpan.Length - 4, 4).ToString());
+                alphaFiveString = string.Concat(alphaChar, satNumberSpan.Slice(satNumberSpan.Length - 4, 4).ToString());
                 return true;
             }
             return false;
@@ -160,6 +160,45 @@ namespace NickSpace.SpaceDataFormats.Ussf
         #endregion
         #region Override Methods
         public override string ToString() => string.Join(Environment.NewLine, _line0, _line1, _line2);
+        #endregion
+        #region IParseable Interface Methods
+        public static Task<bool> TryParseAsync(string text, out TwoLineElementSet value)
+        {
+            throw new NotImplementedException();
+        }
+        public static Task<bool> TryParseAsync(Stream stream, out TwoLineElementSet value)
+        {
+            throw new NotImplementedException();
+        }
+        public static Task<TwoLineElementSet> ParseAsync(string text)
+        {
+            throw new NotImplementedException();
+        }
+        public static Task<TwoLineElementSet> ParseAsync(Stream stream)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+        #region ILoadable Interface Methods
+        public bool TryLoad(string filePath, out TwoLineElementSet value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> TryLoadAsync(string filePath, out TwoLineElementSet value)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TwoLineElementSet Load(string filePath)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TwoLineElementSet> LoadAsync(string filePath)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
         #region Private Methods
         #endregion

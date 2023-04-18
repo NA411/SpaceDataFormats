@@ -10,6 +10,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             const string? input = null;
+            _ = input;
             //-- Act
             //-- Assert
             Assert.Inconclusive();
