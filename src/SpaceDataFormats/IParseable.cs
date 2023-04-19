@@ -12,16 +12,8 @@
             value = default;
             return false;
         }
-        Task<bool> TryParseAsync(string text, out T? value)
-        {
-            value = default;
-            return (Task<bool>)Task.CompletedTask;
-        }
-        Task<bool> TryParseAsync(Stream stream, out T? value)
-        {
-            value = default;
-            return (Task<bool>)Task.CompletedTask;
-        }
+        Task<(bool Result, T? Data)> TryParseAsync(string text) => (Task<(bool Result, T? Data)>)Task.CompletedTask;
+        Task<(bool Result, T? Data)> TryParseAsync(Stream stream) => (Task<(bool Result, T? Data)>)Task.CompletedTask;
         T? Parse(string text) => default;
         T? Parse(Stream stream) => default;
         Task<T?> ParseAsync(string text) => (Task<T?>)Task.CompletedTask;

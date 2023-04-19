@@ -69,6 +69,47 @@ namespace NickSpace.SpaceDataFormats.Ussf
         #region Constructors
         #endregion
         #region Public Methods
+        public static bool TryConvertAlphaFiveToSatelliteNumber(string satelliteDesignation, out uint satelliteNumber)
+        {
+            satelliteNumber = default;
+            const int lengthOfAlphaFive = 5;
+            if (string.IsNullOrWhiteSpace(satelliteDesignation))
+                return false;
+            if (satelliteDesignation.Length < lengthOfAlphaFive || satelliteDesignation.Length > lengthOfAlphaFive)
+                return false;
+            if (!char.IsLetter(satelliteDesignation[0]))
+                return false;
+            if (AlphaFiveLookup.AlphaToNumTable.TryGetValue(char.ToUpperInvariant(Convert.ToChar(satelliteDesignation[..1])), out ushort value))
+            {
+                satelliteNumber = Convert.ToUInt32(value * 10_000) + uint.Parse(satelliteDesignation[1..]);
+                return true;
+            }
+            return false;
+        }
+        public static bool TryConvertSatelliteNumberToAlphaFive(int satelliteNumber, out string alphaFiveString)
+        {
+            alphaFiveString = string.Empty;
+            const int minAlphaFiveSatelliteNumber = 10_000;
+            const int maxAlphaFiveSatelliteNumber = 399_999;
+            if (satelliteNumber < minAlphaFiveSatelliteNumber || satelliteNumber > maxAlphaFiveSatelliteNumber)
+                return false;
+            ReadOnlySpan<char> satNumberSpan = Convert.ToString(satelliteNumber);
+            if (AlphaFiveLookup.NumToAlphaTable.TryGetValue(Convert.ToUInt16(satelliteNumber / 10_000), out char alphaChar))
+            {
+                alphaFiveString = string.Concat(alphaChar, satNumberSpan.Slice(satNumberSpan.Length - 4, 4).ToString());
+                return true;
+            }
+            return false;
+        }
+        private void Validate()
+        {
+            IsValid = true;
+        }
+        #endregion
+        #region Override Methods
+        public override string ToString() => string.Join(Environment.NewLine, _line0, _line1, _line2);
+        #endregion
+        #region IParseable Interface Methods
         /// <summary>
         /// https://www.c-sharpcorner.com/article/c-sharp-string-object-impact-on-performance/
         /// </summary>
@@ -121,47 +162,6 @@ namespace NickSpace.SpaceDataFormats.Ussf
             using StreamReader reader = new(stream);
             return Parse(reader.ReadToEnd());
         }
-        public static bool TryConvertAlphaFiveToSatelliteNumber(string satelliteDesignation, out uint satelliteNumber)
-        {
-            satelliteNumber = default;
-            const int lengthOfAlphaFive = 5;
-            if (string.IsNullOrWhiteSpace(satelliteDesignation))
-                return false;
-            if (satelliteDesignation.Length < lengthOfAlphaFive || satelliteDesignation.Length > lengthOfAlphaFive)
-                return false;
-            if (!char.IsLetter(satelliteDesignation[0]))
-                return false;
-            if (AlphaFiveLookup.AlphaToNumTable.TryGetValue(char.ToUpperInvariant(Convert.ToChar(satelliteDesignation[..1])), out ushort value))
-            {
-                satelliteNumber = Convert.ToUInt32(value * 10_000) + uint.Parse(satelliteDesignation[1..]);
-                return true;
-            }
-            return false;
-        }
-        public static bool TryConvertSatelliteNumberToAlphaFive(int satelliteNumber, out string alphaFiveString)
-        {
-            alphaFiveString = string.Empty;
-            const int minAlphaFiveSatelliteNumber = 10_000;
-            const int maxAlphaFiveSatelliteNumber = 399_999;
-            if (satelliteNumber < minAlphaFiveSatelliteNumber || satelliteNumber > maxAlphaFiveSatelliteNumber)
-                return false;
-            ReadOnlySpan<char> satNumberSpan = Convert.ToString(satelliteNumber);
-            if (AlphaFiveLookup.NumToAlphaTable.TryGetValue(Convert.ToUInt16(satelliteNumber / 10_000), out char alphaChar))
-            {
-                alphaFiveString = string.Concat(alphaChar, satNumberSpan.Slice(satNumberSpan.Length - 4, 4).ToString());
-                return true;
-            }
-            return false;
-        }
-        private void Validate()
-        {
-            IsValid = true;
-        }
-        #endregion
-        #region Override Methods
-        public override string ToString() => string.Join(Environment.NewLine, _line0, _line1, _line2);
-        #endregion
-        #region IParseable Interface Methods
         public static Task<bool> TryParseAsync(string text, out TwoLineElementSet value)
         {
             throw new NotImplementedException();
@@ -180,24 +180,42 @@ namespace NickSpace.SpaceDataFormats.Ussf
         }
         #endregion
         #region ILoadable Interface Methods
-        public bool TryLoad(string filePath, out TwoLineElementSet value)
+        public bool TryLoad(string filePath, out TwoLineElementSet twoLineElement)
         {
-            throw new NotImplementedException();
+            try
+            {
+                twoLineElement = Load(filePath);
+            }
+            catch (Exception)
+            {
+                twoLineElement = new TwoLineElementSet();
+                return false;
+            }
+            return true;
         }
 
-        public Task<bool> TryLoadAsync(string filePath, out TwoLineElementSet value)
+        public async Task<(bool Result, TwoLineElementSet? Data)> TryLoadAsync(string filePath)
         {
-            throw new NotImplementedException();
+            try
+            {
+                return (true, await LoadAsync(filePath));
+            }
+            catch (Exception)
+            {
+                return (false, new TwoLineElementSet());
+            }
         }
 
-        public TwoLineElementSet Load(string filePath)
+        public static TwoLineElementSet Load(string filePath)
         {
-            throw new NotImplementedException();
+            using FileStream stream = File.OpenRead(filePath);
+            return Parse(stream);
         }
 
-        public Task<TwoLineElementSet> LoadAsync(string filePath)
+        public async Task<TwoLineElementSet> LoadAsync(string filePath)
         {
-            throw new NotImplementedException();
+            using FileStream stream = new(filePath, FileMode.Open, FileAccess.Read,FileShare.None,4096,true);
+            return await ParseAsync(stream);
         }
         #endregion
         #region Private Methods

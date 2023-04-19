@@ -4,19 +4,15 @@ using UnitsNet;
 
 namespace NickSpace.SpaceDataFormats
 {
-    internal interface ILoadable<T>
+    public interface ILoadable<T>
     {
-        public bool TryLoad(string filePath, out T? value)
+        bool TryLoad(string filePath, out T? twolineElement)
         {
-            value = default;
+            twolineElement = default;
             return false;
         }
-        public Task<bool> TryLoadAsync(string filePath, out T? value)
-        {
-            value = default;
-            return (Task<bool>)Task.CompletedTask;
-        }
-        public T? Load(string filePath) => default;
-        public Task<T> LoadAsync(string filePath) => (Task<T>)Task.CompletedTask;
+        Task<(bool Result, T? Data)> TryLoadAsync(string filePath) => (Task<(bool Result, T? Data)>)Task.CompletedTask;
+        T? Load(string filePath) => default;
+        Task<T> LoadAsync(string filePath) => (Task<T>)Task.CompletedTask;
     }
 }
