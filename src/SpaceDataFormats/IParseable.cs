@@ -12,11 +12,11 @@
             value = default;
             return false;
         }
-        Task<(bool Result, T? Data)> TryParseAsync(string text) => (Task<(bool Result, T? Data)>)Task.CompletedTask;
-        Task<(bool Result, T? Data)> TryParseAsync(Stream stream) => (Task<(bool Result, T? Data)>)Task.CompletedTask;
+        Task<(bool Result, T? Data)> TryParseAsync(string text) => Task.FromResult((Result: false, Data: default(T)));
+        Task<(bool Result, T? Data)> TryParseAsync(Stream stream) => Task.FromResult((Result: false, Data: default(T)));
         T? Parse(string text) => default;
         T? Parse(Stream stream) => default;
-        Task<T?> ParseAsync(string text) => (Task<T?>)Task.CompletedTask;
-        Task<T?> ParseAsync(Stream stream) => (Task<T?>)Task.CompletedTask;
+        Task<T?> ParseAsync(string text) => Task.FromResult(default(T));
+        Task<T?> ParseAsync(Stream stream) => Task.FromResult(default(T));
     }
 }

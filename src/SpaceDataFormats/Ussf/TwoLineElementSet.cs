@@ -170,11 +170,11 @@ namespace NickSpace.SpaceDataFormats.Ussf
         {
             throw new NotImplementedException();
         }
-        public static Task<TwoLineElementSet> ParseAsync(string text)
+        public static Task<TwoLineElementSet?> ParseAsync(string text)
         {
             throw new NotImplementedException();
         }
-        public static Task<TwoLineElementSet> ParseAsync(Stream stream)
+        public static Task<TwoLineElementSet?> ParseAsync(Stream stream)
         {
             throw new NotImplementedException();
         }
@@ -212,7 +212,7 @@ namespace NickSpace.SpaceDataFormats.Ussf
             return Parse(stream);
         }
 
-        public async Task<TwoLineElementSet> LoadAsync(string filePath)
+        public async Task<TwoLineElementSet?> LoadAsync(string filePath)
         {
             using FileStream stream = new(filePath, FileMode.Open, FileAccess.Read,FileShare.None,4096,true);
             return await ParseAsync(stream);

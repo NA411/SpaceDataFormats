@@ -11,8 +11,8 @@ namespace NickSpace.SpaceDataFormats
             twolineElement = default;
             return false;
         }
-        Task<(bool Result, T? Data)> TryLoadAsync(string filePath) => (Task<(bool Result, T? Data)>)Task.CompletedTask;
+        Task<(bool Result, T? Data)> TryLoadAsync(string filePath) => Task.FromResult((Result: false, Data: default(T)));
         T? Load(string filePath) => default;
-        Task<T> LoadAsync(string filePath) => (Task<T>)Task.CompletedTask;
+        Task<T?> LoadAsync(string filePath) => Task.FromResult(default(T));
     }
 }
