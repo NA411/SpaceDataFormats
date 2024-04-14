@@ -1,6 +1,6 @@
 ﻿using NickSpace.SpaceDataFormats.Ussf;
 using System.Reflection.Metadata.Ecma335;
-using UnitsNet;
+using EngineeringUnits;
 
 namespace NickSpace.SpaceDataFormats
 {

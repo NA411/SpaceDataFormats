@@ -1,4 +1,4 @@
-﻿using UnitsNet;
+﻿using EngineeringUnits;
 
 namespace NickSpace.SpaceDataFormats.Ussf
 {
@@ -8,7 +8,7 @@ namespace NickSpace.SpaceDataFormats.Ussf
         double DragTerm { get; set; }
         double Eccentricity { get; set; }
         DateTime Epoch { get; set; }
-        double FirstDerivativeOfMeanMotion { get; set; }
+        RotationalSpeed FirstDerivativeOfMeanMotion { get; set; }
         Angle Inclination { get; set; }
         Angle MeanAnomy { get; set; }
         TimeSpan MeanMotion { get; set; }

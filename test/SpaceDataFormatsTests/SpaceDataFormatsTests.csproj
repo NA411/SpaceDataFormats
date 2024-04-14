@@ -23,4 +23,8 @@
     <ProjectReference Include="..\..\src\SpaceDataFormats\SpaceDataFormats.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Ussf\TwoLineElementSetFiles\" />
+  </ItemGroup>
+
 </Project>

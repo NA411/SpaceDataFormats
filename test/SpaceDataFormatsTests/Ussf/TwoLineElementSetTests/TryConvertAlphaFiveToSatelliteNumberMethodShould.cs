@@ -13,7 +13,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             //-- Act
-            var actualResult = TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(satelliteDesignation, out uint _);
+            var actualResult = ElementSet.TryConvertAlphaFiveToSatelliteNumber(satelliteDesignation, out uint _);
             //-- Assert
             Assert.IsTrue(actualResult);
         }
@@ -25,7 +25,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             //-- Act
-            TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint actualResult);
+            ElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint actualResult);
             //-- Assert
             Assert.IsTrue(expectedResult == actualResult);
         }
@@ -36,7 +36,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             //-- Act
-            var actualResult = TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint _);
+            var actualResult = ElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint _);
             //-- Assert
             Assert.IsFalse(actualResult);
         }
@@ -47,7 +47,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             //-- Act
-            TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint satelliteNumber);
+            ElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint satelliteNumber);
             //-- Assert
             Assert.IsTrue(satelliteNumber == default);
         }
@@ -57,7 +57,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             //-- Assemble
             const string input = "34324";
             //-- Act
-            var actualResult = TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint _);
+            var actualResult = ElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint _);
             //-- Assert
             Assert.IsFalse(actualResult);
         }
@@ -70,7 +70,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             //-- Act
-            var actualResult = TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(inputStr, out uint _);
+            var actualResult = ElementSet.TryConvertAlphaFiveToSatelliteNumber(inputStr, out uint _);
             //-- Assert
             Assert.IsFalse(actualResult);
         }
@@ -80,7 +80,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             //-- Assemble
             const string? input = null;
             //-- Act
-            var actualResult = TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input!, out uint _);
+            var actualResult = ElementSet.TryConvertAlphaFiveToSatelliteNumber(input!, out uint _);
             //-- Assert
             Assert.IsFalse(actualResult);
         }
@@ -89,7 +89,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             string input = string.Empty;
             //-- Act
-            var actualResult = TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint _);
+            var actualResult = ElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint _);
             //-- Assert
             Assert.IsFalse(actualResult);
         }
@@ -98,7 +98,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             const string input = " ";
             //-- Act
-            var actualResult = TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint _);
+            var actualResult = ElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint _);
             //-- Assert
             Assert.IsFalse(actualResult);
         }
@@ -108,7 +108,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             //-- Assemble
             const string input = "34324";
             //-- Act
-            TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint actualResult);
+            ElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint actualResult);
             //-- Assert
             Assert.IsTrue(actualResult == default);
         }
@@ -121,7 +121,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             //-- Act
-            TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(inputStr, out uint actualResult);
+            ElementSet.TryConvertAlphaFiveToSatelliteNumber(inputStr, out uint actualResult);
             //-- Assert
             Assert.IsTrue(actualResult == default);
         }
@@ -131,7 +131,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
             //-- Assemble
             const string? input = null;
             //-- Act
-            TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input!, out uint actualResult);
+            ElementSet.TryConvertAlphaFiveToSatelliteNumber(input!, out uint actualResult);
             //-- Assert
             Assert.IsTrue(actualResult == default);
         }
@@ -140,7 +140,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             string input = string.Empty;
             //-- Act
-            TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint actualResult);
+            ElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint actualResult);
             //-- Assert
             Assert.IsTrue(actualResult == default);
         }
@@ -149,7 +149,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             const string input = " ";
             //-- Act
-            TwoLineElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint actualResult);
+            ElementSet.TryConvertAlphaFiveToSatelliteNumber(input, out uint actualResult);
             //-- Assert
             Assert.IsTrue(actualResult == default);
         }

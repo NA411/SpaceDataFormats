@@ -13,7 +13,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             //-- Act
-            var actualResult = TwoLineElementSet.TryConvertSatelliteNumberToAlphaFive(satelliteNumber, out string _);
+            var actualResult = ElementSet.TryConvertSatelliteNumberToAlphaFive(satelliteNumber, out string _);
             //-- Assert
             Assert.IsTrue(actualResult);
         }
@@ -25,7 +25,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             //-- Act
-            TwoLineElementSet.TryConvertSatelliteNumberToAlphaFive(satelliteNumber, out string actualResult);
+            ElementSet.TryConvertSatelliteNumberToAlphaFive(satelliteNumber, out string actualResult);
             //-- Assert
             Assert.IsTrue(actualResult.Equals(expectedResult, StringComparison.Ordinal));
         }
@@ -37,7 +37,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             //-- Act
-            var actualResult = TwoLineElementSet.TryConvertSatelliteNumberToAlphaFive(satelliteNumber, out string _);
+            var actualResult = ElementSet.TryConvertSatelliteNumberToAlphaFive(satelliteNumber, out string _);
             //-- Assert
             Assert.IsFalse(actualResult);
         }
@@ -49,7 +49,7 @@ namespace NickSpace.SpaceDataFormatsTests.Ussf.TwoLineElementSetTests
         {
             //-- Assemble
             //-- Act
-            TwoLineElementSet.TryConvertSatelliteNumberToAlphaFive(satelliteNumber, out string actualResult);
+            ElementSet.TryConvertSatelliteNumberToAlphaFive(satelliteNumber, out string actualResult);
             _ = satelliteNumber;
             //-- Assert
             Assert.IsTrue(actualResult.Equals(string.Empty,StringComparison.Ordinal));
